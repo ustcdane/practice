@@ -29,7 +29,7 @@ function merge() {
 	i=0
 	local arr
 	max_num=4097 # 默认概率对数的最大值 4096 先默认为0
-	while [ $i -lt $max_num ]
+	while [ $i -lt $max_num ] # for ((i=0;i<=2047;i++)) is also ok
 	do
 		arr[$i]=0
 		#echo $i
@@ -45,7 +45,7 @@ function merge() {
 	
 	echo $g_nums > $out_file
 	i=0
-	while [ $i -lt ${#arr[@]} ]
+	while [ $i -lt ${#arr[@]} ] 
 	do
 		if [ 1 -eq ${arr[$i]} ];then
 			echo "merge file ${i}.out"
