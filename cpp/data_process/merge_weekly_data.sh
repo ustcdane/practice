@@ -29,7 +29,7 @@ function merge() {
 	i=0
 	local arr
 	max_num=4097 # 默认概率对数的最大值 4096 先默认为0
-	while [ $i -lt $max_num ] # for ((i=0;i<=2047;i++)) is also ok
+	while [ $i -lt $max_num ] # for ((i=0;i<4097;i++)) is also ok
 	do
 		arr[$i]=0
 		#echo $i
