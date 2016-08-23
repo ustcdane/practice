@@ -1,0 +1,17 @@
+/usr/include/Platform/encoding/support.h
+
+//判断一个双字节字符wc是否GBK编码汉字
+inline bool isGBKChnChar(UINT16 wc)
+{
+    unsigned char b1 = wc & 0xFF;
+    unsigned char b2 = wc >> 8;
+
+    //GBK中汉字编码在三个区域
+    //GBK-2区(GB2312汉字)： B0A1-F7FE
+    //GBK-3区：             8140-A0FE
+    //GBK-4区：             AA40-FEA0
+    return
+        (((b1 >= 0xB0) && (b1 <= 0xF7) && (b2 >= 0xA1) && (b2 <= 0xFE)) ||
+        ((b1 >= 0x81) && (b1 <= 0xA0) && (b2 >= 0x40) && (b2 <= 0xFE)) ||
+        ((b1 >= 0xAA) && (b1 <= 0xFE) && (b2 >= 0x40) && (b2 <= 0xA0)));
+}
