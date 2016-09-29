@@ -1,0 +1,58 @@
+yum -y install curl curl-devel 
+
+redhat 5.8
+curl 7.15.5
+
+
+
+http://www.cppblog.com/tx7do/archive/2012/02/20/166048.html
+curl_easy_setopt(curl, CURLOPT_FORBID_REUSE, 1);
+ 最好再修改一下TCP参数调低CLOSE_WAIT和TIME_WAIT的超时时间
+ 非阻塞：
+http://book.51cto.com/art/201305/394916.htm
+http://stackoverflow.com/questions/24288513/how-to-do-curl-multi-perform-asynchronously-in-c
+
+
+
+gcc -o curl_multi_test curl_multi_test.c -lcurl                          
+/tmp/ccGgROfS.o: In function `main':
+curl_multi_test.c:(.text+0x16b): undefined reference to `curl_multi_wait'
+collect2: ld returned 1 exit status
+
+出错，但是已经安装新版本，由于旧版本没有卸载的缘故，需要yum -y remove curl。
+
+curl新版本安装：
+ 
+ http://stackoverflow.com/questions/36803908/trouble-installing-packages-in-centos-internet-routines-cannot-be-loaded
+ Your curl is missing https support. There was an error regarding curl_multi_wait in your output as well. This was added in 7.28.0.
+
+https://curl.haxx.se/libcurl/c/curl_multi_wait.html
+
+If you need to build curl locally do this
+
+mkdir -p $HOME/curl
+cd $HOME/curl
+git clone https://github.com/curl/curl.git
+bash buildconf
+./configure --prefix=$HOME/libcurl
+make
+make install
+At this point you need to setup your LD_LIBRARY_PATH in .bash_profile ie
+
+export LD_LIBRARY_PATH=$HOME/libcurl/lib:$LD_LIBRARY_PATH
+Then either logout and back in again or
+
+source ~/.bash_profile
+
+
+简单安装：
+
+1.下载 
+wget  http://curl.haxx.se/download/curl-7.38.0.tar.gz
+2.解压 
+tar -xzvf curl-7.38.0.tar.gz
+3.安装
+cd curl-7.38.0
+./configure --prefix=/usr/local/curl
+make
+make install
