@@ -12,12 +12,12 @@ public:
 	CurlCpp();
     ~CurlCpp();
     // GET 
-	std::string get(const std::string& url);
-    std::string get(const std::string& url, const std::map<std::string, std::string>& params);
+	bool get(const std::string& url, std::string& readBuf);
+    bool get(const std::string& url, const std::map<std::string, std::string>& params, std::string& readBuf);
     // POST
-    std::string post(const std::string& url, const std::string& data);
-    std::string post(const std::string& url, const std::map<std::string, std::string>& params);
-    std::string post(const std::string& url, const std::map<std::string, std::string>& params, const std::map<std::string, std::string>& headers_map);
+    bool post(const std::string& url, const std::string& data, std::string& readBuf);
+    bool post(const std::string& url, const std::map<std::string, std::string>& params, std::string& readBuf);
+    bool post(const std::string& url, const std::map<std::string, std::string>& params, const std::map<std::string, std::string>& headers_map, std::string& readBuf);
 
     unsigned int  HttpStatus() const { 
         return httpStatus_; 

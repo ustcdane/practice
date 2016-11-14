@@ -37,11 +37,9 @@ static size_t WriteCallback(void *contents, size_t size, size_t nmemb, void *use
 }
 
 /* GET methods */
-std::string CurlCpp::get(const std::string &url)
+bool CurlCpp::get(const std::string &url, std::string& readBuffer)
 {   
     httpStatus_ = 0;
-    std::string readBuffer;
-
     curl_ = curl_easy_init();
 
     if(curl_)
@@ -55,7 +53,7 @@ std::string CurlCpp::get(const std::string &url)
         if(curlCode_ != CURLE_OK)
         {
             fprintf(stderr, "curl_easy_perform() failed: %s\n", curl_easy_strerror(curlCode_));
-            return 0;
+            return false;
         }
         // Get the curl response code 
         curl_easy_getinfo(curl_, CURLINFO_RESPONSE_CODE, &http_code);
@@ -63,20 +61,15 @@ std::string CurlCpp::get(const std::string &url)
 
         if(int(httpStatus_) == 400)
             std::cerr << "Response <" << httpStatus_ << "> thrown." << std::endl;
-
         curl_easy_cleanup(curl_);
     }
-
-  return readBuffer;
+  return true;
 }
 
-std::string CurlCpp::get(const std::string &url, const std::map<std::string, std::string> &params)
+bool CurlCpp::get(const std::string &url, const std::map<std::string, std::string> &params, std::string& readBuffer)
 {
     httpStatus_ = 0;
-
-    std::string readBuffer;
     std::string parameters;
-
     curl_ = curl_easy_init();
 
     for(auto itr = params.begin(); itr != params.end(); ++itr) 
@@ -95,7 +88,7 @@ std::string CurlCpp::get(const std::string &url, const std::map<std::string, std
         if(curlCode_ != CURLE_OK)
         {
             fprintf(stderr, "curl_easy_perform() failed: %s\n", curl_easy_strerror(curlCode_));
-            return 0;
+            return false;
         }
         // Get the curl response code 
 		curl_easy_getinfo(curl_, CURLINFO_RESPONSE_CODE, &http_code);
@@ -103,28 +96,23 @@ std::string CurlCpp::get(const std::string &url, const std::map<std::string, std
 
         if(int(httpStatus_) == 400)
             std::cerr << "Response <" << httpStatus_ << "> thrown." << std::endl;
-
         curl_easy_cleanup(curl_);
     }
-
-  return readBuffer;
+  return true;
 }
 
 /* POST methods */
 
-std::string CurlCpp::post(const std::string &url, const std::map<std::string, std::string> &params)
+bool CurlCpp::post(const std::string &url, const std::map<std::string, std::string> &params, std::string& readBuffer)
 {   
     curl_ = curl_easy_init();
-
     std::string parameters;
-    std::string readBuffer;
 
     for(auto itr = params.begin(); itr != params.end(); ++itr) 
         parameters.append(itr->first + "=" + itr->second);
-
     // std::cerr << parameters << std::endl;
-
-    if(curl_)
+    
+	if(curl_)
     {
         curl_easy_setopt(curl_, CURLOPT_URL, url.c_str());
         curl_easy_setopt(curl_, CURLOPT_WRITEFUNCTION, WriteCallback);
@@ -138,7 +126,7 @@ std::string CurlCpp::post(const std::string &url, const std::map<std::string, st
         if(curlCode_ != CURLE_OK)
         {
             fprintf(stderr, "curl_easy_perform() failed: %s\n", curl_easy_strerror(curlCode_));
-            return 0;
+            return false;
         }
         // Get the curl response code 
         unsigned int http_code;
@@ -147,19 +135,16 @@ std::string CurlCpp::post(const std::string &url, const std::map<std::string, st
         curl_easy_cleanup(curl_);
     }
 
-    return readBuffer;
+    return true;
 }
 
-std::string CurlCpp::post(const std::string &url, const std::map<std::string, std::string> &params, const std::map<std::string, std::string> &headers_map)
+bool CurlCpp::post(const std::string &url, const std::map<std::string, std::string> &params, 
+		const std::map<std::string, std::string> &headers_map, std::string& readBuffer)
 {   
     curl_ = curl_easy_init();
-
     std::string parameters;
     std::string headers_data;
-
     struct curl_slist *headers = NULL;
-
-    std::string readBuffer;
 
     for(auto itr = params.begin(); itr != params.end(); ++itr) 
         parameters.append(itr->first + "=" + itr->second + "&");
@@ -185,7 +170,7 @@ std::string CurlCpp::post(const std::string &url, const std::map<std::string, st
         if(curlCode_ != CURLE_OK)
         {
             fprintf(stderr, "curl_easy_perform() failed: %s\n", curl_easy_strerror(curlCode_));
-            return 0;
+            return false;
         }
         curl_slist_free_all(headers);
         // Get the curl response code 
@@ -195,10 +180,10 @@ std::string CurlCpp::post(const std::string &url, const std::map<std::string, st
         curl_easy_cleanup(curl_);
     }
 
-    return readBuffer;
+    return true;
 }
 
-std::string CurlCpp::post(const std::string &url, const std::string &data)
+bool CurlCpp::post(const std::string &url, const std::string &data, std::string& readBuffer)
 {   
     const char * data_char_array = data.c_str(); 
 
@@ -208,8 +193,6 @@ std::string CurlCpp::post(const std::string &url, const std::string &data)
      
     data_content.readptr = data_char_array;
     data_content.sizeleft = (long)strlen(data_char_array);   
-
-    std::string readBuffer;
 
     if(curl_)
     {
@@ -230,7 +213,7 @@ std::string CurlCpp::post(const std::string &url, const std::string &data)
         if(curlCode_ != CURLE_OK)
         {
             fprintf(stderr, "curl_easy_perform() failed: %s\n", curl_easy_strerror(curlCode_));
-            return 0;
+            return false;
         }
         // Get the curl response code 
         unsigned int http_code;
@@ -239,6 +222,6 @@ std::string CurlCpp::post(const std::string &url, const std::string &data)
         curl_easy_cleanup(curl_);
     }
 
-    return readBuffer;
+    return true;
 }
 
