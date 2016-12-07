@@ -1,0 +1,86 @@
+syntax = "proto3";
+// option optimize_for = LITE_RUNTIME;
+
+option objc_class_prefix = "tecentQQ";
+
+option cc_enable_arenas = true;
+
+package qq;
+
+
+
+// client -> server
+
+message Device {
+
+	enum Platform {
+		IOS = 0;
+		Android = 1;
+	}
+	
+	string app_name = 1;
+	string input_version = 2;
+	string user_id = 3;
+	Platform platform = 4;		// 平台信息
+}
+
+message Geo {
+	double latitude = 1;
+	double longitude = 2;
+	string lbs = 3;
+}
+
+message TranslateType {
+	enum LanguageType {	// 翻译语言类型
+		Zh = 0; 
+		En = 1;
+	}
+	LanguageType from = 1;	 
+	LanguageType to = 2;	 
+}
+
+message ClientRequestBody {
+	Device device = 1;			 
+	Geo geo = 2;				 
+	
+	enum RequestType {
+		Passive = 0;
+		Active = 1;
+		LongPress = 2;
+		QA = 3;
+	}
+	
+	RequestType request_type = 3;	// 请求类型
+	repeated string sentences = 4;	// 请求的句子
+	bool full_width = 5;			// 是否是全角
+	
+	string request_class = 6;
+	
+	int32 news_page = 7;
+	TranslateType translate = 8;
+}
+
+// server -> client
+
+message Card {
+  string template_name = 1;
+  bool is_recommended = 2;
+  map<string, string> card_properties = 3;
+	
+  // 轮播
+  message CarouselUnit {
+	map<string, string> card_properties = 1;
+  }
+  repeated CarouselUnit carousel = 4;
+  repeated Card subcards = 5;
+}
+
+
+message ServerResponseBody {
+	repeated Card cards = 1;
+	string request_class = 2;
+	map<string, string> container_properties = 3;
+	bool is_recommended = 4;
+    int64 session_id = 5;
+}
+
