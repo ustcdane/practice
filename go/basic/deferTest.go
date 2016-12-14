@@ -18,7 +18,7 @@ import (
 	"fmt"
 )
 
-func f1() (res int) {
+func f1() (res int) {// 命名的返回值
 	defer func() {
 		res++
 	}()
