@@ -22,4 +22,5 @@ func main() {
 		fmt.Printf("index = %d \t%s\n", i, test.Get(i))
 	}
 
+	defer sayHi.DeleteTest()
 }
