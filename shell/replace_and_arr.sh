@@ -11,3 +11,9 @@ for i in ${arr[@]}
 do
 	echo $i
 done
+
+types=(a b c d)
+type_num="${#types[*]}"
+echo $type
+echo $type_num
+echo ${#types[@]}
