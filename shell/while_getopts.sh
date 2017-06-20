@@ -12,10 +12,10 @@ function usage() {
     echo "options: -[hm]"
     echo "-h    print this help information"
     echo "-m    name of use-provided mapper script"
-    echo "-T n  set frequence threshold to n"
+    echo "-T n  set frequence threshold to n, such as -T 1600:1580 or -T 1600"
 }
 
-if [ $# -lt 2 ]; then
+if [ $# -lt 4 ]; then
     usage >&1;
     exit 1;
 fi
@@ -30,7 +30,7 @@ while getopts 'hm:T:' opt; do
         ?) usage; exit 1;   ;;
     esac
 done
-
+echo "threshold is:$threshold"
 shift $(($OPTIND - 1))
 
 output="$1"
@@ -52,6 +52,9 @@ for line in sys.stdin:
         print >>sys.stderr, "invalid line:%s" % line
 EOF
 chmod +x "$defmap"
+
+trap "rm -f $defmap;" EXIT TERM KILL ABRT INT
+
 mapper="${mapper:-$defmap}"
 
 rm $output
@@ -69,4 +72,3 @@ do
 done
 
 [ $? -eq 0 ] || echo "$0: fail to run!" && exit 1
-#rm $defmap
