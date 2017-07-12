@@ -1,25 +1,27 @@
-##OP_CRTP?
-Ò»¸ö»ùÓÚ[CRTP](https://zh.wikipedia.org/wiki/%E5%A5%87%E5%BC%82%E9%80%92%E5%BD%92%E6%A8%A1%E6%9D%BF%E6%A8%A1%E5%BC%8F) & [Expression template](https://en.wikipedia.org/wiki/Expression_templates)¼¼ÊõµÄ¼òµ¥ËãÊõÔËËã¿â.
+##Expression_Template_CRTP?
+ä¸€ä¸ªåŸºäº[CRTP](https://zh.wikipedia.org/wiki/%E5%A5%87%E5%BC%82%E9%80%92%E5%BD%92%E6%A8%A1%E6%9D%BF%E6%A8%A1%E5%BC%8F) & [Expression template](https://en.wikipedia.org/wiki/Expression_templates)æŠ€æœ¯çš„ç®€å•ç®—æœ¯è¿ç®—åº“.
 
-##OP_CRTPÓĞÄÄĞ©¹¦ÄÜ£¿
+##Expression_Template_CRTPæœ‰å“ªäº›åŠŸèƒ½ï¼Ÿ
 
-* ·½±ãµÄ`µ¼Èëµ¼³ö`¹¦ÄÜ
-    *  Ö±½Ó°ÑÒ»¸ömarkdownµÄÎÄ±¾ÎÄ¼şÍÏ·Åµ½µ±Ç°Õâ¸öÒ³Ãæ¾Í¿ÉÒÔÁË
-    *  µ¼³öÎªÒ»¸öhtml¸ñÊ½µÄÎÄ¼ş£¬ÑùÊ½Ò»µãÒ²²»»á¶ªÊ§
-* ±à¼­ºÍÔ¤ÀÀ`Í¬²½¹ö¶¯`£¬Ëù¼û¼´ËùµÃ£¨ÓÒÉÏ½ÇÉèÖÃ£©
-* `VIM¿ì½İ¼ü`Ö§³Ö£¬·½±ãvimµ³ÃÇ¿ìËÙµÄ²Ù×÷ £¨ÓÒÉÏ½ÇÉèÖÃ£©
-* Ç¿´óµÄ`×Ô¶¨ÒåCSS`¹¦ÄÜ£¬·½±ã¶¨ÖÆ×Ô¼ºµÄÕ¹Ê¾
-* ÓĞÊıÁ¿Ò²ÓĞÖÊÁ¿µÄ`Ö÷Ìâ`,±à¼­Æ÷ºÍÔ¤ÀÀÇøÓò
-* ÍêÃÀ¼æÈİ`Github`µÄmarkdownÓï·¨
-* Ô¤ÀÀÇøÓò`´úÂë¸ßÁÁ`
-* ËùÓĞÑ¡Ïî×Ô¶¯¼ÇÒä
+* åˆ†æexpression templateå¯¹æ¯”ä»¥åŠç¤ºä¾‹ä»£ç ï¼Œè§ç›®å½•expression_guide
+* åŸºäºCRTP æŠ€æœ¯åŠexpression templateæŠ€æœ¯å®ç°äº†ä¸€ä¸ªç®€å•çš„ä¸€å…ƒã€äºŒå…ƒè¿ç®—çš„åº“
+* CRTPæŠ€æœ¯åšå®¢[å‚ç…§è¿™é‡Œ](http://blog.csdn.net/daniel_ustc/article/details/73699378)
+* Expression TemplateæŠ€æœ¯åšå®¢å‚ç…§è¿™é‡Œ
 
-##ÓĞÎÊÌâ·´À¡
-ÔÚÊ¹ÓÃÖĞÓĞÈÎºÎÎÊÌâ£¬»¶Ó­·´À¡¸øÎÒ£¬¿ÉÒÔÓÃÒÔÏÂÁªÏµ·½Ê½¸úÎÒ½»Á÷
+##ä½¿ç”¨æ–¹æ³•ï¼Ÿ
 
-* ÓÊ¼ş(daneustc#gmail.com, °Ñ#»»³É@)
+* ä½¿ç”¨å‰è¯·ç¡®ä¿ç³»ç»Ÿç¼–è¯‘å™¨æ”¯æŒC11ä»¥åŠæŒ‰ç…§äº†cmake
+* cd build
+* sh reMake.sh
+* ç”Ÿæˆå¯æ‰§è¡Œç¨‹åºï¼šexpression_template  naive_overloading    test_crtp
 
 
-##¹ØÓÚ×÷Õß
+##æœ‰é—®é¢˜åé¦ˆ
+åœ¨ä½¿ç”¨ä¸­æœ‰ä»»ä½•é—®é¢˜ï¼Œæ¬¢è¿åé¦ˆç»™æˆ‘ï¼Œå¯ä»¥ç”¨ä»¥ä¸‹è”ç³»æ–¹å¼è·Ÿæˆ‘äº¤æµ
+
+* é‚®ä»¶(daneustc#gmail.com, æŠŠ#æ¢æˆ@)
+
+
+##å…³äºä½œè€…
 
 [Daniel](http://ustcdane.github.io/)
