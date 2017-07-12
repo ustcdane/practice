@@ -9,4 +9,8 @@ The Expression_Template_CRTP 基于 C++的于[CRTP](https://zh.wikipedia.org/wik
 
 * cd build
 * sh reMake.sh
-* ./test_crtp
+即可生成相关可执行程序。
+
+
+* CRTP技术博客[参照这里](http://blog.csdn.net/daniel_ustc/article/details/73699378)
+* Expression Template技术博客参照这里
