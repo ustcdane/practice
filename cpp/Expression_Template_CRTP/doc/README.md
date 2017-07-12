@@ -6,7 +6,7 @@
 * 分析expression template对比以及示例代码，见目录expression_guide
 * 基于CRTP 技术及expression template技术实现了一个简单的一元、二元运算的库
 * CRTP技术博客[参照这里](http://blog.csdn.net/daniel_ustc/article/details/73699378)
-* Expression Template技术博客参照这里
+* Expression Template技术博客参照[这里](http://blog.csdn.net/daniel_ustc/article/details/74857956)
 
 ##使用方法？
 
