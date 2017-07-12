@@ -13,4 +13,4 @@ The Expression_Template_CRTP 基于 C++的于[CRTP](https://zh.wikipedia.org/wik
 
 
 * CRTP技术博客[参照这里](http://blog.csdn.net/daniel_ustc/article/details/73699378)
-* Expression Template技术博客参照这里
+* Expression Template技术博客参照[这里](http://blog.csdn.net/daniel_ustc/article/details/74857956)
