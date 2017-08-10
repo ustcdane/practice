@@ -1,8 +1,9 @@
 ## 查看编码
 locale 命令查看编码：
+
 locale 
 
-
+'''
 LANG=en_US.UTF-8
 LC_CTYPE="en_US.UTF-8"
 LC_NUMERIC="en_US.UTF-8"
@@ -17,13 +18,17 @@ LC_TELEPHONE="en_US.UTF-8"
 LC_MEASUREMENT="en_US.UTF-8"
 LC_IDENTIFICATION="en_US.UTF-8"
 LC_ALL=
+'''
 
 
 
 ## 修改系统编码
 所有用户——/etc/profile
+
 单个用户——其他shell相关配置文件
+
 可以的单独修改每个 LC_XXX, 也可以修改 LANG 或 LC_ALL 使所有的生效，优先级关系：
+
 LC_ALL > LC_XXX > LANG
 
 vi /etc/profile
@@ -38,6 +43,7 @@ export LANG="zh_CN.GBK"
 查看系统编码
 locale 
 
+'''
 LANG=en_US.UTF-8
 LC_CTYPE="en_US.UTF-8"
 LC_NUMERIC="en_US.UTF-8"
@@ -52,6 +58,7 @@ LC_TELEPHONE="en_US.UTF-8"
 LC_MEASUREMENT="en_US.UTF-8"
 LC_IDENTIFICATION="en_US.UTF-8"
 LC_ALL=
+'''
 
 sh lang_test.sh
 
@@ -59,6 +66,9 @@ sh lang_test.sh
 gbk.tmp 行数不同。
 
 echo "abc哈哈ａｂ" | LC_ALL='zh_CN.GBK' awk '{print substr($1, 6,1)}'
+
 输出：ａ
+
 echo "abc哈哈ａｂ" | LC_ALL='en_US.UTF-8' awk '{print substr($1, 6,1)}'
+
 输出：空白
