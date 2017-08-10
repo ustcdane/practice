@@ -3,7 +3,7 @@ locale 命令查看编码：
 
 locale 
 
-'''
+> 
 LANG=en_US.UTF-8
 LC_CTYPE="en_US.UTF-8"
 LC_NUMERIC="en_US.UTF-8"
@@ -18,7 +18,7 @@ LC_TELEPHONE="en_US.UTF-8"
 LC_MEASUREMENT="en_US.UTF-8"
 LC_IDENTIFICATION="en_US.UTF-8"
 LC_ALL=
-'''
+
 
 
 
@@ -43,7 +43,7 @@ export LANG="zh_CN.GBK"
 查看系统编码
 locale 
 
-'''
+> 
 LANG=en_US.UTF-8
 LC_CTYPE="en_US.UTF-8"
 LC_NUMERIC="en_US.UTF-8"
@@ -58,7 +58,7 @@ LC_TELEPHONE="en_US.UTF-8"
 LC_MEASUREMENT="en_US.UTF-8"
 LC_IDENTIFICATION="en_US.UTF-8"
 LC_ALL=
-'''
+ 
 
 sh lang_test.sh
 
