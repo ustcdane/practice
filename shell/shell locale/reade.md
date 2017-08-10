@@ -3,8 +3,7 @@ locale 命令查看编码：
 
 locale 
 
-> 
-LANG=en_US.UTF-8
+> LANG=en_US.UTF-8
 LC_CTYPE="en_US.UTF-8"
 LC_NUMERIC="en_US.UTF-8"
 LC_TIME="en_US.UTF-8"
@@ -43,8 +42,7 @@ export LANG="zh_CN.GBK"
 查看系统编码
 locale 
 
-> 
-LANG=en_US.UTF-8
+> LANG=en_US.UTF-8
 LC_CTYPE="en_US.UTF-8"
 LC_NUMERIC="en_US.UTF-8"
 LC_TIME="en_US.UTF-8"
