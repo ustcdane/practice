@@ -1,0 +1,2 @@
+wordl idl wordr idr gramvalue bitinfo cainfo canfilt rank_in_py merge_word origin_gram
+ºÃhao 1 °ôbang 2 251 0 0 0 0 ºÃhao°ôbang 106

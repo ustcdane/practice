@@ -1,0 +1,4 @@
+word id unigram backoff pattern lid rid
+(null) 0 0 0 0 0 0
+ºÃhao 1 242 282 16 0 0
+°ôbang 2 555 300 0 0 0
