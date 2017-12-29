@@ -41,7 +41,7 @@ function draw_row()
 	echo $row
 }
 
-# param:rows to draw , each row split by '\#'
+# param:rows to draw , rows split by '\#'
 function draw_table()
 {
 	if [ $# -ne 1 ];then
