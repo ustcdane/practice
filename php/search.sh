@@ -19,7 +19,7 @@ fi
 cd $bigram_dir
 
 
-function draw_table()
+function draw_row()
 {
 	if [ $# -ne 1 ];then
 		exit 1
@@ -41,6 +41,23 @@ function draw_table()
 	echo $row
 }
 
+# param:rows to draw , each row split by '\#'
+function draw_table()
+{
+	if [ $# -ne 1 ];then
+		echo "</br>"
+		return;
+	fi
+	msg=$1
+	ifs=$IFS
+	IFS='\#'
+	array=($msg)
+	for line in ${array[@]}
+	do
+		draw_row "$line"
+	done
+	IFS=$ifs
+}
 echo "<table cellspacing=\"0\" cellpadding=\"0\" border=\"0\" width=\"90%\">"
 
 #画表 一元信息
@@ -48,15 +65,13 @@ echo "<tr><td><strong>unigram info:</strong></tr></td>"
 echo "<tr><td>"
 echo "<table cellspacing=\"0\" cellpadding=\"0\" border=\"1\" bordercolor=\"\#000000\" width=\"60%\"  style=\"BORDER-COLLAPSE: collapse\" >"
 
-L=`grep ^"$left"[a-z] uni.txt`
-R=`grep ^"$right"[a-z] uni.txt`
+L=`grep ^"$left"[a-z] uni.txt|awk '{printf("%s\#",$0);}'`
+R=`grep ^"$right"[a-z] uni.txt|awk '{printf("%s\#",$0);}'`
 #uni_msg="word  id  unigram  backoff  pattern  lid  rid"
 uni_msg="元词  元词id  一元词频  回退词频  模式  半命中拆分左id  半命中拆分右id"
 draw_table "$uni_msg"
 
 if [[ -z "$L" || -z "$R" ]];then
-	echo $L
-	echo $R
 	draw_table "$L"
 	draw_table "$R"
 	echo "</table>"
@@ -90,15 +105,7 @@ echo "<tr><td>"
 bi_msg="左元  左元id  右元  右元id  压缩二元值   bitinfo 调频信息  canfilt 同音下排序  左右元合并  原始二元值"
 echo "<table  cellspacing=\"0\" cellpadding=\"0\" border=\"1\" bordercolor=\"\#000000\" width=\"70%\"  style=\"BORDER-COLLAPSE: collapse\" >"
 draw_table "$bi_msg"
-
-ifs=$IFS
-IFS='\#'
-array=($bi)
-for line in ${array[@]}
-do
-	draw_table "$line"
-done
-IFS=$ifs
+draw_table "$bi"
 
 echo "</table>"
 echo "</tr></td>" # 二元信息表格绘制结束
