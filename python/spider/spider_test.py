@@ -15,7 +15,7 @@ query = {'ACTIONID':'7','TABKEY':'tab1','AJAX':'AJAX-TRUE','tab1PAGENO':'1','CAT
 #urllib.urlencode(query[, doseq])：将dict或者包含两个元素的元组列表转换成url参
 #数。例如 字典{'name': 'dark-bull', 'age': 200}将被转换为"name=dark-bull&
 #age=200"
-def getPage(url, post_):
+def getPage(url, query):
     date = urllib.urlencode(query)
     #向服务器端发送请求
     post = urllib2.Request(url,date)
@@ -43,9 +43,12 @@ def getFile(url, file_name):
         f.write(buffer)
     f.close()
 
+download_dir = os.path.join(os.getcwd(),'pdf_download')
 
-os.mkdir('pdf_download')
-os.chdir(os.path.join(os.getcwd(), 'pdf_download'))
+if not os.path.isdir(download_dir):
+    print download_dir
+    os.mkdir('pdf_download')
+os.chdir(download_dir)
 
 page_start=20
 while page_start < 21:
