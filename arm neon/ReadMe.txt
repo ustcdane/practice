@@ -7,3 +7,6 @@ Coding for NEON - Part 3: Matrix Multiplication
 https://community.arm.com/processors/b/blog/posts/coding-for-neon---part-3-matrix-multiplication
 
 https://developer.arm.com/technologies/neon/intrinsics
+
+math-neon
+https://code.google.com/archive/p/math-neon/
