@@ -1,3 +1,10 @@
+
+sigmoid softmax multiply neon 优化。
+
+
+---------------------------------
+资料：
+
 neon优化：
 http://luofl1992.is-programmer.com/posts/38686.html
 https://zyddora.github.io/2016/02/28/neon_1/
