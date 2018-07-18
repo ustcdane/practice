@@ -217,6 +217,48 @@
              ptr++;
          }
 	}
+	
+	
+	
+	/*
+   TanH = (e^x - e^-x) / (e^x + e^-x)
+   TanH = (e^x - e^-x)(e^x) / (e^x + e^-x)(e^x)
+   TanH = (e^2x - 1) / (e^2x + 1)
+   */
+    void tanh(float *ptr, float *outptr, int count) {
+        if (!ptr || !outptr || count <1)
+            return;
+        int nn = count >> 2;
+        int remain = count - (nn << 2);
+               float32x4_t _one = vdupq_n_f32(1.f);
+               float32x4_t _scale = vdupq_n_f32(2.f);
+                for (; nn>0; nn--)
+                {
+                  		float32x4_t _p = vld1q_f32(ptr);
+                  		//float32x4_t _negp = vnegq_f32(_p); // -x
+                  		_p = vmulq_f32(_p, _scale); // 2x
+                  		_p = exp_ps(_p);// e_2x
+                  		//_negp = exp_ps(_negp);// e_-x
+                  		float32x4_t _fenZi = vsubq_f32(_p, _one);
+                  		float32x4_t _fenMu = vaddq_f32(_p, _one);
+                  #if __aarch64__
+                  			_p = vdivq_f32(_fenZi, _fenMu);
+                  #else
+                  			_p = div_ps(_fenZi, _fenMu);
+                  #endif // __aarch64__
+                  		vst1q_f32(outptr, _p);
+                  		ptr += 4;
+                  		outptr += 4;
+                }
+              for (; remain>0; remain--)
+              {
+                  *outptr = std::tanh(*ptr);
+                  ptr++;
+                  outptr++;
+              }
+    }
+	
+	
 
 
 #else
